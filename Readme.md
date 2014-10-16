@@ -24,9 +24,9 @@ being reused.
 
 traditional unix command option extractor, returns an object with the options
 set as properties.  Like traditional unix, getopt only checks for option
-switches at the beginning of the argument list, preceding non-switch
-arguments.  It recognizes '-' as a filename and '--' as the special marker
-that stops further argument scanning.
+switches at the beginning of the argument list, before non-switch arguments.
+It recognizes '-' as a filename and '--' as the special marker that stops
+further argument scanning.
 
         var getopt = require('arlib/getopt').getopt;
         var options = getopt(process.argv, "f:h");
@@ -43,32 +43,40 @@ to return locale-specific guaranteed unique ids.
 
         // convenience function, picks a random system id
         var mongoid = require('arlib').mongoid;
-        id = mongoid();
-        id = mongoid();
-        // 543f376340e2816497000001
-        // 543f376340e2816497000002
+        id = mongoid();                 // 543f376340e2816497000001
+        id = mongoid();                 // 543f376340e2816497000002
 
         // id factory, configured for the unique system identifier 1
         var MongoId = require('arlib').MongoId;
         var idFactory = new MongoId(1);
-        id = idFactory.fetch();
-        id = idFactory.fetch();
-        // 543f3789000001649f000001
-        // 543f3789000001649f000002
+        id = idFactory.fetch();         // 543f3789000001649f000001
+        id = idFactory.fetch();         // 543f3789000001649f000002
 
 ### Fgets
 
-synchronous line-at-a-time stream reader.  Returns the next buffered line
-or the empty string "" when the buffer is empty.
+synchronous line-at-a-time stream reader.  Returns the next buffered line or
+the empty string "" if the buffer is currently empty.  3x faster than
+require('readline'), and works like C fgets(), it doesn't modify the input.
+Note: the caller must periodically yield to allow the buffer to fill.
 
         var fs = require('fs');
         var Fgets = require('arlib').Fgets;
         var fp = new Fgets(fs.createReadStream('/etc/motd', 'r'));
         // line = fp.fgets();
 
+#### feof
+
+returns true when fgets has no more lines to return
+
+        var Fgets = require('arlib').Fgets;
+        var fp = new Fgets('/etc/motd');        // use buit-in FileReader
+        var contents = "";
+        while (!fp.feof()) contents += fp.fgets();
+
 #### FileReader
 
-fast file reader to feed data to fgets, 30% faster than read streams.
+fast file reader to feed data to fgets.  A smidge faster than a read stream
+created with a reasonable highWaterMark (50% faster than with defaults)
 
         var FileReader = require('arlib').FileReader;
         var fp = new Fgets(new FileReader('/etc/motd'));
