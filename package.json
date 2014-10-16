@@ -1,6 +1,6 @@
 {
   "name": "arlib",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Andras' Utility Functions",
   "license": "Apache-2.0",
   "repository": {
@@ -26,7 +26,11 @@
     "utilities",
     "getopt",
     "tempnam",
-    "fgets"
+    "fgets",
+    "mongoid",
+    "unique",
+    "mongo",
+    "quick"
   ],
   "dependencies": {
     "fs-ext": "*"

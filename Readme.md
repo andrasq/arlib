@@ -22,14 +22,39 @@ being reused.
 
 ### getopt
 
-traditional unix command option extractor, returns an object with
-the options set as properties.
+traditional unix command option extractor, returns an object with the options
+set as properties.  Like traditional unix, getopt only checks for option
+switches at the beginning of the argument list, preceding non-switch
+arguments.  It recognizes '-' as a filename and '--' as the special marker
+that stops further argument scanning.
 
         var getopt = require('arlib/getopt').getopt;
         var options = getopt(process.argv, "f:h");
-        // {f: 'filename', h: true}
+        // { f: 'filename', h: true }
         var options = getopt(process.argv, "(-file):(-help)");
         // {file: 'filename', help: true}
+
+### mongoid
+
+very fast, light-weight mongodb compatible timestamped unique id
+generator.  Can be used as a convenience function to return unique-ish
+(random) ids, or as an id factory configured with a unique system id
+to return locale-specific guaranteed unique ids.
+
+        // convenience function, picks a random system id
+        var mongoid = require('arlib').mongoid;
+        id = mongoid();
+        id = mongoid();
+        // 543f376340e2816497000001
+        // 543f376340e2816497000002
+
+        // id factory, configured for the unique system identifier 1
+        var MongoId = require('arlib').MongoId;
+        var idFactory = new MongoId(1);
+        id = idFactory.fetch();
+        id = idFactory.fetch();
+        // 543f3789000001649f000001
+        // 543f3789000001649f000002
 
 ### Fgets
 
@@ -38,13 +63,13 @@ or the empty string "" when the buffer is empty.
 
         var fs = require('fs');
         var Fgets = require('arlib').Fgets;
-        var fp = new Fgets(fs.createReadStream(filename, 'r'));
+        var fp = new Fgets(fs.createReadStream('/etc/motd', 'r'));
         // line = fp.fgets();
 
 #### FileReader
 
-fast file reader to fee data to fgets, 30% faster than read streams.
+fast file reader to feed data to fgets, 30% faster than read streams.
 
         var FileReader = require('arlib').FileReader;
-        var fp = new Fgets(new FileReader(filename));
+        var fp = new Fgets(new FileReader('/etc/motd'));
         // line = fp.fgets();

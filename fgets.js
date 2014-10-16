@@ -1,1 +1,1 @@
-module.exports = require('./lib/fgets');
+module.exports = require('./lib/fgets.js');
