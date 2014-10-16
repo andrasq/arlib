@@ -54,10 +54,12 @@ to return locale-specific guaranteed unique ids.
 
 ### Fgets
 
-synchronous line-at-a-time stream reader.  Returns the next buffered line or
-the empty string "" if the buffer is currently empty.  3x faster than
-require('readline'), and works like C fgets(), it doesn't modify the input.
-Note: the caller must periodically yield to allow the buffer to fill.
+synchronous line-at-a-time stream reader.  Returns the next buffered
+line or the empty string "" if the buffer is currently empty.  3x faster
+than require('readline'), and works like C fgets(), it doesn't modify
+the input.  Note: the caller must periodically yield with setImmediate
+or setTimeout to allow the buffer to fill.
+
 
         var fs = require('fs');
         var Fgets = require('arlib').Fgets;
@@ -71,7 +73,10 @@ returns true when fgets has no more lines to return
         var Fgets = require('arlib').Fgets;
         var fp = new Fgets('/etc/motd');        // use buit-in FileReader
         var contents = "";
-        while (!fp.feof()) contents += fp.fgets();
+        (function readfile() {
+            for (var i=0; i<40; i++) contents += fp.fgets();
+            if (!fp.feof()) setImmediate(readfile);     // yield periodically
+        })();
 
 #### FileReader
 
