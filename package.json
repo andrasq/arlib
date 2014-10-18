@@ -1,6 +1,6 @@
 {
   "name": "arlib",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Andras' Utility Functions",
   "license": "Apache-2.0",
   "repository": {
@@ -37,7 +37,10 @@
     "phpdate",
     "datetime",
     "date",
-    "time"
+    "time",
+    "str_repeat",
+    "php",
+    "timeit",
   ],
   "dependencies": {
     "fs-ext": "*"

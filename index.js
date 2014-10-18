@@ -10,4 +10,6 @@ module.exports = {
     Fgets: require('./fgets.js'),
     FileReader: require('./lib/file-reader.js'),
     phpdate: require('./lib/phpdate'),
+    str_repeat: require('./lib/str_repeat'),
+    timeit: require('./lib/timeit'),
 };
