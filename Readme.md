@@ -10,7 +10,7 @@ that I want easy access to.  Feel free to browse and use!
 The components are all available with `require('arlib')`, or each component
 is loadable separately with eg `require('arlib/tempnam')`.
 
-### tempnam
+### tempnam( [directory], [prefix] )
 
 php tempnam equivalent, creates a filename that does not exist on the
 system.  Like php, it also creates the file to prevent the name from
@@ -20,7 +20,7 @@ being reused.
         var filename = tempnam("/usr/tmp", "filename-prefix-");
         // /usr/tmp/filename-prefix-a7259b
 
-### getopt
+### getopt( argv, optspec )
 
 traditional unix command option extractor, returns an object with the options
 set as properties.  Like traditional unix, getopt only checks for option
@@ -34,7 +34,7 @@ further argument scanning.
         var options = getopt(process.argv, "(-file):(-help)");
         // {file: 'filename', help: true}
 
-### mongoid
+### mongoid( ), new MongoId().fetch( )
 
 very fast, light-weight mongodb compatible timestamped unique id
 generator.  Can be used as a convenience function to return unique-ish
@@ -60,14 +60,14 @@ than require('readline'), and works like C fgets(), it doesn't modify
 the input.  Note: the caller must periodically yield with setImmediate
 or setTimeout to allow the buffer to fill.
 
-#### fgets
+#### fgets( )
 
         var fs = require('fs');
         var Fgets = require('arlib').Fgets;
         var fp = new Fgets(fs.createReadStream('/etc/motd', 'r'));
         // line = fp.fgets();
 
-#### feof
+#### feof( )
 
 returns true when fgets has no more lines to return
 
