@@ -60,6 +60,7 @@ than require('readline'), and works like C fgets(), it doesn't modify
 the input.  Note: the caller must periodically yield with setImmediate
 or setTimeout to allow the buffer to fill.
 
+#### fgets
 
         var fs = require('fs');
         var Fgets = require('arlib').Fgets;
@@ -81,8 +82,20 @@ returns true when fgets has no more lines to return
 #### FileReader
 
 fast file reader to feed data to fgets.  A smidge faster than a read stream
-created with a reasonable highWaterMark (50% faster than with defaults)
+created with a reasonable highWaterMark (50% faster than a stream created with
+defaults)
 
         var FileReader = require('arlib').FileReader;
         var fp = new Fgets(new FileReader('/etc/motd'));
         // line = fp.fgets();
+
+### phpdate( format, timestamp )
+
+return a formatted date string like PHP's date() does.  Supports most of the
+conversions (but not the ISO-8601), though timezone and localization support
+is rather lacking.  North America timezones should work.
+
+See [php's date](php.net/manual/en/function.date.php) for the list of
+supported conversions.  Of them, W and o are not implemented.
+
+                phpdate('Y-m-d H:i:s.u T');       // 2014-10-18 04:56:53.437000 EDT

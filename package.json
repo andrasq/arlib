@@ -1,6 +1,6 @@
 {
   "name": "arlib",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Andras' Utility Functions",
   "license": "Apache-2.0",
   "repository": {
@@ -20,17 +20,24 @@
   },
   "keywords": [
     "Andras",
-    "library",
+    "andrasq",
     "quicklib",
+    "quick",
+    "library",
     "fast",
     "utilities",
-    "getopt",
     "tempnam",
-    "fgets",
+    "getopt",
     "mongoid",
+    "uniqueid",
     "unique",
+    "id",
     "mongo",
-    "quick"
+    "fgets",
+    "phpdate",
+    "datetime",
+    "date",
+    "time"
   ],
   "dependencies": {
     "fs-ext": "*"

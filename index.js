@@ -9,4 +9,5 @@ module.exports = {
     MongoId: require('./mongoid.js').MongoId,
     Fgets: require('./fgets.js'),
     FileReader: require('./lib/file-reader.js'),
+    phpdate: require('./lib/phpdate'),
 };
