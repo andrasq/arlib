@@ -95,7 +95,7 @@ return a formatted date string like PHP's date() does.  Supports most of the
 conversions (but not the ISO-8601), though timezone and localization support
 is rather lacking.  North America timezones should work.
 
-See [php's date](php.net/manual/en/function.date.php) for the list of
+See [php's date](http://php.net/manual/en/function.date.php) for the list of
 supported conversions.  Of them, W and o are not implemented.
 
                 phpdate('Y-m-d H:i:s.u T');       // 2014-10-18 04:56:53.437000 EDT
