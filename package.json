@@ -1,6 +1,6 @@
 {
   "name": "arlib",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Andras' Utility Functions",
   "license": "Apache-2.0",
   "repository": {
@@ -33,17 +33,15 @@
     "unique",
     "id",
     "mongo",
-    "fgets",
     "phpdate",
     "datetime",
     "date",
     "time",
     "str_repeat",
     "php",
-    "timeit",
+    "timeit"
   ],
   "dependencies": {
-    "fs-ext": "*"
   },
   "devDependencies": {
     "nodeunit": "*"

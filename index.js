@@ -7,9 +7,13 @@ module.exports = {
     nextopt: require('./getopt.js').nextopt,
     mongoid: require('./mongoid.js').mongoid,
     MongoId: require('./mongoid.js').MongoId,
-    Fgets: require('./fgets.js'),
-    FileReader: require('./lib/file-reader.js'),
     phpdate: require('./lib/phpdate'),
     str_repeat: require('./lib/str_repeat'),
     timeit: require('./lib/timeit'),
+
+    // pass-through includes from related packages (must be installed separately)
+    Fgets: require('qfgets'),
+    FileReader: require('qfgets').FileReader,
+    Fputs: require('qfputs'),
+    FileWriter: require('qfputs').FileWriter,
 };
