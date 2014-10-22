@@ -11,9 +11,12 @@ module.exports = {
     str_repeat: require('./lib/str_repeat'),
     timeit: require('./lib/timeit'),
 
+/***
+    // FIXME: either remove passthrough or make fgets/fputs a dependency
     // pass-through includes from related packages (must be installed separately)
     Fgets: require('qfgets'),
     FileReader: require('qfgets').FileReader,
     Fputs: require('qfputs'),
     FileWriter: require('qfputs').FileWriter,
+***/
 };
