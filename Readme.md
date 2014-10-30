@@ -45,15 +45,33 @@ generator.  Can be used as a convenience function to return unique-ish
 to return locale-specific guaranteed unique ids.
 
         // convenience function, picks a random system id
-        var mongoid = require('arlib').mongoid;
+        var mongoid = require('arlib/mongoid');
         id = mongoid();                 // 543f376340e2816497000001
         id = mongoid();                 // 543f376340e2816497000002
 
-        // id factory, configured for the unique system identifier 1
-        var MongoId = require('arlib').MongoId;
-        var idFactory = new MongoId(1);
-        id = idFactory.fetch();         // 543f3789000001649f000001
-        id = idFactory.fetch();         // 543f3789000001649f000002
+        // id factory, configured for the system identifier 4656 (0x001230)
+        var MongoId = require('arlib/mongoid').MongoId;
+        var idFactory = new MongoId(4656);
+        id = idFactory.fetch();         // 543f3789001230649f000001
+        id = idFactory.fetch();         // 543f3789001230649f000002
+
+### MongoId.getTimestamp( idString )
+
+return the timestamp from the mongoid string in JavaScript format.
+Note that JavaScript timestamps have millisecond precision, but mongoid
+only stores seconds precision, so the last 3 digits will be 000.
+
+        MongoId.getTimestamp("543f3789001230649f000001")
+        // => 1413429129000
+
+#### MongoId.parse( idString )
+
+return the mongoid string split into its component fields.
+For example, "5451a297f7e0f13c3a000001" parses to `{ timestamp: 1414636183,
+machineid: 16244977, pid: 15418, sequence: 1 }`
+
+Note that the timestamp field is a Unix timestamp (seconds since epoch),
+while getTimestamp() return a JavaScript timestamp (milliseconds since epoch).
 
 ### phpdate( format, timestamp )
 

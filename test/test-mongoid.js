@@ -1,7 +1,7 @@
 'use stricf';
 
-var mongoid = require('../index').mongoid;
-var MongoId = require('../index').MongoId;
+var mongoid = require('../mongoid');
+var MongoId = require('../mongoid').MongoId;
 
 function uniqid() {
     return Math.floor(Math.random() * 0x1000000);
