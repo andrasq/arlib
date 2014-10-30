@@ -62,7 +62,8 @@ conversions (but not the ISO-8601), though timezone and localization support
 is rather lacking.  North America timezones should work.
 
 See php's [date](http://php.net/manual/en/function.date.php) for the list of
-supported conversions.  Of them, W and o are not implemented.
+supported conversions.  Of the conversions as of 2014-09-15 (php 5.1.0),
+W and o are not yet implemented.
 
         var phpdate = require('arlib/phpdate');
         phpdate('Y-m-d H:i:s.u T');     // 2014-10-18 04:56:53.437000 EDT
@@ -114,6 +115,10 @@ In particular, it handles nested objects and nested arrays.
         var params = {d: {a: 1, b: 2, c: {a: 1, b: 2}}};
         var queryString = http_build_query(params, {leave_brackets: true});
         // => "d[a]=1&d[b]=2&d[c][a]=1&d[c][b]=2"
+
+        var params = [1, 2, 3];
+        var queryString = http_build_query(params, {numeric_prefix: 'idx'});
+        // => "idx0=1&idx1=2&idx2=3"
 
 options:
 
