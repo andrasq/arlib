@@ -51,4 +51,18 @@ module.exports = {
         t.equal(opts._argv[0], '-a');
         t.done();
     },
+
+    'should return boolean for yes/no option': function(t) {
+        var opts = getopt("nodejs script.js -h", "h");
+        t.equal(opts.h, true);
+        t.equal(typeof opts.h, 'boolean');
+        t.done();
+    },
+
+    'should return count for repeated yes/no option': function(t) {
+        var opts = getopt("nodejs script.js -h -h", "h");
+        t.equal(opts.h, 2);
+        t.equal(typeof opts.h, 'number');
+        t.done();
+    },
 };

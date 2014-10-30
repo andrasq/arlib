@@ -7,9 +7,10 @@ module.exports = {
     nextopt: require('./getopt.js').nextopt,
     mongoid: require('./mongoid.js').mongoid,
     MongoId: require('./mongoid.js').MongoId,
-    phpdate: require('./lib/phpdate'),
-    str_repeat: require('./lib/str_repeat'),
-    timeit: require('./lib/timeit'),
+    phpdate: require('./lib/phpdate.js'),
+    str_repeat: require('./lib/str_repeat.js'),
+    timeit: require('./lib/timeit.js'),
+    http_build_query: require('./lib/http_build_query.js'),
 
 /***
     // FIXME: either remove passthrough or make fgets/fputs a dependency
