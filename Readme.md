@@ -61,7 +61,7 @@ return a formatted date string like PHP's date() does.  Supports most of the
 conversions (but not the ISO-8601), though timezone and localization support
 is rather lacking.  North America timezones should work.
 
-See [php's date](http://php.net/manual/en/function.date.php) for the list of
+See php's [date](http://php.net/manual/en/function.date.php) for the list of
 supported conversions.  Of them, W and o are not implemented.
 
         var phpdate = require('arlib/phpdate');
@@ -69,7 +69,8 @@ supported conversions.  Of them, W and o are not implemented.
 
 ### str_repeat( string, count )
 
-return the string concatenated with itself count times
+return the string concatenated with itself count times.
+See php's [str_repeat](http://php.net/manual/en/function.str-repeat.php)
 
         var str_repeat = require('arlib/str_repeat');
         str_repeat("x", 5);             // "xxxxx"
@@ -99,3 +100,26 @@ then count times back-to-back for the benchmark.
         }
         timeit(10000, function(cb){ opencloseAsync(function(){ cb(); }); }, "async open/close:", function(){ });
         // async open/close: "function (cb){ opencloseAsync(function(){ cb(); }); }": 10000 loops in 0.2890 sec:  34598.11 / sec, 0.02890 ms each
+
+### http_build_query( objectOrArray, options )
+
+format a query string like PHP's [http_build_query](http://php.net/manual/en/function.http-build-query.php).
+In particular, it handles nested objects and nested arrays.
+
+        var http_build_query = require('arlib/http_build_query');
+        var params = {a: 1, b: 2, c: [3, 4, [5, 6]]};
+        var queryString = http_build_query(params, {leave_brackets: true});
+        // => "a=1&b=2&c[0]=3&c[1]=4&c[2][0]=5&c[2][1]=6"
+
+        var params = {d: {a: 1, b: 2, c: {a: 1, b: 2}}};
+        var queryString = http_build_query(params, {leave_brackets: true});
+        // => "d[a]=1&d[b]=2&d[c][a]=1&d[c][b]=2"
+
+options:
+
+        arg_separator   '&'
+        eq_sign         '='
+        prefix          string to prepend to numeric keys
+        encoding        'PHP_QUERY_RFC1738' (default) - encode spaces as '+'
+                        'PHP_QUERY_RFC3986' - encode spaces as '%20'
+        leave_brackets  encode {a:[3]} as "a[0]=3" and not "a%5B0%5D=3"
