@@ -1,6 +1,6 @@
 {
   "name": "arlib",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Andras' Utility Functions",
   "license": "Apache-2.0",
   "repository": {
@@ -40,7 +40,7 @@
     "str_repeat",
     "php",
     "timeit",
-    "http_build_query",
+    "http_build_query"
   ],
   "dependencies": {
   },
