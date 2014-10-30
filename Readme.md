@@ -119,7 +119,7 @@ options:
 
         arg_separator   '&'
         eq_sign         '='
-        prefix          string to prepend to numeric keys
+        numeric_prefix  string to prepend to numeric keys
         encoding        'PHP_QUERY_RFC1738' (default) - encode spaces as '+'
                         'PHP_QUERY_RFC3986' - encode spaces as '%20'
         leave_brackets  encode {a:[3]} as "a[0]=3" and not "a%5B0%5D=3"
