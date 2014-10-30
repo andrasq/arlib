@@ -64,14 +64,15 @@ only stores seconds precision, so the last 3 digits will be 000.
         MongoId.getTimestamp("543f3789001230649f000001")
         // => 1413429129000
 
-#### MongoId.parse( idString )
+### MongoId.parse( idString )
 
 return the mongoid string split into its component fields.
-For example, "5451a297f7e0f13c3a000001" parses to `{ timestamp: 1414636183,
-machineid: 16244977, pid: 15418, sequence: 1 }`
+
+        MongoId.parse("5451a297f7e0f13c3a000001")
+        // => { timestamp: 1414636183, machineid: 16244977, pid: 15418, sequence: 1 }
 
 Note that the timestamp field is a Unix timestamp (seconds since epoch),
-while getTimestamp() return a JavaScript timestamp (milliseconds since epoch).
+while getTimestamp() returns a JavaScript timestamp (milliseconds since epoch).
 
 ### phpdate( format, timestamp )
 
