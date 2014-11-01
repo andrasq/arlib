@@ -99,7 +99,8 @@ See php's [str_repeat](http://php.net/manual/en/function.str-repeat.php)
 
 run the function count + 1 times, and print the run timings to the console.
 If function is a string it will be eval-d.  The function under test is run
-once to compile it (and not include the cost of compilation in the timings),
+twice to compile it (and not include the cost of compilation in the timings)
+and prime the node optimizer,
 then count times back-to-back for the benchmark.
 
         var timeit = require('arlib/timeit');
