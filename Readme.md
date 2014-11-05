@@ -13,15 +13,16 @@ was moved into its own package.
 The components are all available with `require('arlib')`, or each component
 is loadable separately with eg `require('arlib/tempnam')`.
 
-### tempnam( [directory], [prefix] )
+### tempnam( [directory], [prefix], callback(err, filename) )
 
 php tempnam equivalent, creates a filename that does not exist on the
 system.  Like php, it also creates the file to prevent the name from
 being reused.
 
         var tempnam = require('arlib/tempnam');
-        var filename = tempnam("/usr/tmp", "filename-prefix-");
-        // /usr/tmp/filename-prefix-a7259b
+        var filename = tempnam("/usr/tmp", "filename-prefix-", callback(err, filename) {
+            // => /usr/tmp/filename-prefix-a7259b
+        });
 
 ### getopt( argv, optspec )
 
