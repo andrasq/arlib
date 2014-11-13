@@ -5,8 +5,9 @@ module.exports = {
     tempnam: require('./tempnam.js'),
     getopt: require('./getopt.js'),
     nextopt: require('./getopt.js').nextopt,
-    mongoid: require('./mongoid.js').mongoid,
-    MongoId: require('./mongoid.js').MongoId,
+    // mongoid has been moved into its own package
+    mongoid: require('mongoid-js').mongoid,
+    MongoId: require('mongoid-js').MongoId,
     phpdate: require('./lib/phpdate.js'),
     str_repeat: require('./lib/str_repeat.js'),
     timeit: require('./lib/timeit.js'),

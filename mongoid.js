@@ -1,1 +1,1 @@
-module.exports = require('./lib/mongoid.js');
+module.exports = require('mongoid-js');
