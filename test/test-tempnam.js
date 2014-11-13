@@ -23,6 +23,25 @@ module.exports = {
         });
     },
 
+    'creates file in TMPDIR with no prefix': function(t) {
+        var oldTmpdir = process.env.TMPDIR;
+        var tmpdir = __dirname + '/tmp';
+        process.env.TMPDIR = tmpdir;
+        try { fs.mkdirSync(__dirname + '/tmp') } catch (err) { }
+        t.expect(3);
+        tempnam(function(err, filename) {
+            var index = filename.indexOf(tmpdir);
+            var name = filename.slice(tmpdir.length);
+            process.env.TMPDIR = oldTmpdir;
+            t.ok(index === 0);
+            t.equal(name[0], '/');
+            t.equal(name.length, 1+6);
+            fs.unlinkSync(filename);
+            fs.rmdirSync(tmpdir);
+            t.done();
+        });
+    },
+
     'creates file in the specified directory with given prefix': function(t) {
         var dir = "/tmp";
         var prefix = "tempnam-test";
