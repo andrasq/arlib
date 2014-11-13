@@ -39,41 +39,15 @@ further argument scanning.
         // {file: 'filename', help: true}
 
 ### mongoid( ), new MongoId().fetch( )
+### MongoId.getTimestamp( idString )
+### MongoId.parse( idString )
 
 very fast, light-weight mongodb compatible timestamped unique id
 generator.  Can be used as a convenience function to return unique-ish
 (random) ids, or as an id factory configured with a unique system id
 to return locale-specific guaranteed unique ids.
 
-        // convenience function, picks a random system id
-        var mongoid = require('arlib/mongoid');
-        id = mongoid();                 // 543f376340e2816497000001
-        id = mongoid();                 // 543f376340e2816497000002
-
-        // id factory, configured for the system identifier 4656 (0x001230)
-        var MongoId = require('arlib/mongoid').MongoId;
-        var idFactory = new MongoId(4656);
-        id = idFactory.fetch();         // 543f3789001230649f000001
-        id = idFactory.fetch();         // 543f3789001230649f000002
-
-### MongoId.getTimestamp( idString )
-
-return the timestamp from the mongoid string in JavaScript format.
-Note that JavaScript timestamps have millisecond precision, but mongoid
-only stores seconds precision, so the last 3 digits will be 000.
-
-        MongoId.getTimestamp("543f3789001230649f000001")
-        // => 1413429129000
-
-### MongoId.parse( idString )
-
-return the mongoid string split into its component fields.
-
-        MongoId.parse("5451a297f7e0f13c3a000001")
-        // => { timestamp: 1414636183, machineid: 16244977, pid: 15418, sequence: 1 }
-
-Note that the timestamp field is a Unix timestamp (seconds since epoch),
-while getTimestamp() returns a JavaScript timestamp (milliseconds since epoch).
+See [mongoid](https://www.npmjs.org/package/mongoid-js) for details.
 
 ### phpdate( format, timestamp )
 
@@ -122,6 +96,21 @@ then count times back-to-back for the benchmark.
         }
         timeit(10000, function(cb){ opencloseAsync(function(){ cb(); }); }, "async open/close:", function(){ });
         // async open/close: "function (cb){ opencloseAsync(function(){ cb(); }); }": 10000 loops in 0.2890 sec:  34598.11 / sec, 0.02890 ms each
+
+### timeit.fptime( )
+
+nanosecond-resolution floating-point timestamp from process.hrtime().  The
+timestamp returned does not have an absolute meaning (on Linux, it's uptime(1),
+the number of seconds since the last boot), but differeces between timestamp
+are accurate -- a difference of 1.00 is 1 elapsed second.  The overhead is as
+low as .6 microseconds per call, about 3x slower than Date.now().
+
+        var fptime = require('arlib/timeit').fptime
+        var t1 = fptime();      // 1809688.215437152
+        var t2 = fptime();      // 1809688.215462518
+        var t3 = fptime();      // 1809688.215466353
+        // 25.4 usec for the first call, 3.84 for the second
+        // uptime of 20 days, 22:40 hours
 
 ### http_build_query( objectOrArray, options )
 

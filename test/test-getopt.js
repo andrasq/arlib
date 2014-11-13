@@ -65,4 +65,10 @@ module.exports = {
         t.equal(typeof opts.h, 'number');
         t.done();
     },
+
+    'should throw error for unrecognized option': function(t) {
+        try { var opts = getopt("nodejs script.js -x", "vc"); t.ok(false, "expected error"); }
+        catch (err) { t.ok(true); }
+        t.done();
+    },
 };
