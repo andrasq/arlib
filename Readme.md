@@ -31,6 +31,15 @@ and the default prefix is the empty string.
             // => /usr/tmp/filename-prefix-a7259b
         });
 
+Tempnam() generates random filenames and retries on collision.  The more files
+in the temp directory, the more chance of name collisions.  Although up to 16
+million (2^24) files are possible, the retry approach breaks down when close
+to the 16m limit (at 14 million it would take an average of 4 retries to find
+an unused name, still ok, but at 15 million 11, not ok).  Note that 16 million
+files in a single directory is unmanageable; `ls` and `echo *` do not work,
+and it takes days to just delete them all off an ext3 filesystem with an
+opendir/readdir/unlink loop written in C.
+
 ### getopt( argv, optspec )
 
 traditional unix command option extractor, returns an object with the options
