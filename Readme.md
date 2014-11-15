@@ -1,12 +1,18 @@
-# arlib
+arlib
+=====
 
-### Andras' Library of Handy Utilities
+## Andras' Library of Handy Utilities
 
 This is a placeholder for some of the code I've been working on
 that I want easy access to.  Feel free to browse and use!
 
 Note: [qfgets](https://www.npmjs.org/package/qfgets) which first appeared here
 was moved into its own package.
+
+### Installation
+
+        npm install arlib
+        npm test arlib
 
 ## Contents
 
@@ -17,7 +23,8 @@ is loadable separately with eg `require('arlib/tempnam')`.
 
 php tempnam equivalent, creates a filename that does not exist on the
 system.  Like php, it also creates the file to prevent the name from
-being reused.
+being reused.  The default directory is process.env.TMPDIR (else /tmp),
+and the default prefix is the empty string.
 
         var tempnam = require('arlib/tempnam');
         var filename = tempnam("/usr/tmp", "filename-prefix-", callback(err, filename) {
@@ -47,7 +54,9 @@ generator.  Can be used as a convenience function to return unique-ish
 (random) ids, or as an id factory configured with a unique system id
 to return locale-specific guaranteed unique ids.
 
-See [mongoid](https://www.npmjs.org/package/mongoid-js) for details.
+The mongoid functionality of arlib was made into separate package, arlib
+now includes it as a dependency.
+See [mongoid-js](https://www.npmjs.org/package/mongoid-js) for details.
 
 ### phpdate( format, timestamp )
 
