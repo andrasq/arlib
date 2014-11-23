@@ -82,8 +82,8 @@ module.exports = {
     },
 
     'gmdate should handle DT fall back overlap': function(t) {
-        // WRITEME
-        t.done("writeme");
+        // FIXME: WRITEME
+        t.done()
     },
 
     'gmdate should handle DST spring foward in black hole': function(t) {
@@ -123,7 +123,7 @@ function fuzztest( t, phpdate, phpPhpdateName ) {
         "c",
         "r U",
 // FIXME: W and o broken still
-//            "W o",
+//        "W o",
     ];
 
     var i, times = [];
