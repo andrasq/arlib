@@ -65,14 +65,51 @@ module.exports = {
         t.done();
     },
 
-    'fuzz test phpdate with 10k random timestamps': function(t) {
-        fuzztest(t, phpdate);
+    'gmdate should handle ST fall back': function(t) {
+        var gdt = gmdate('Y-m-d H:i:s', 1194147428000);
+        var pdt = phpdate('Y-m-d H:i:s', 1194147428000);
+        assert.equal(gdt, '2007-11-04 03:37:08');
+        assert.equal(pdt, '2007-11-03 23:37:08');
+        t.done();
     },
 
-    // TODO: lots more tests
+    'gmdate should handle DST spring forward': function(t) {
+        var pdt = phpdate('Y-m-d H:i:s', 514953117000);
+        var gdt = gmdate('Y-m-d H:i:s', 514953117000);
+        assert.equal(pdt, '1986-04-26 21:31:57');
+        assert.equal(gdt, '1986-04-27 02:31:57');
+        t.done();
+    },
+
+    'gmdate should handle DT fall back overlap': function(t) {
+        // WRITEME
+        t.done("writeme");
+    },
+
+    'gmdate should handle DST spring foward in black hole': function(t) {
+        //var dt1 = gmdate('Y-m-d H:i:s', 514969199 * 1000);  // 1:59:59am EST, 6:59:59 GMT
+        //var dt2 = gmdate('Y-m-d H:i:s', 514969200 * 1000);  // 3:00:00am EDT, 7:00:00 GMT
+        t.done();
+    },
+
+    'should typeset gmdate for 1295756896': function(t) {
+        var dt = gmdate('Z e I O P T', 1295756896000);
+        //assert.equal(dt, '');
+        t.done();
+    },
+
+    'fuzz test phpdate with 10k random timestamps': function(t) {
+        fuzztest(t, phpdate, 'date');
+    },
+
+    'fuzz test gmdate with 10k random timestamps': function(t) {
+        fuzztest(t, gmdate, 'gmdate');
+    },
+
+    // TODO: specific tests
 };
 
-function fuzztest( t, phpdate ) {
+function fuzztest( t, phpdate, phpPhpdateName ) {
     var timestampCount = 10000;
     var formats = [
         "a A g G H i s",
@@ -87,14 +124,13 @@ function fuzztest( t, phpdate ) {
         "r U",
 // FIXME: W and o broken still
 //            "W o",
-
-// FIXME: gmdate broken...
-// FIXME: 1194147428: Sun 2007-11-04 3am, 2 hours after DST ended (changed in 2007).
-// FIXME: 452052701: 1984-04-28 Sat 9pm, 3 hours before start of DST
     ];
+
     var i, times = [];
+
     // pick random dates between 1986 (500m) and 2017 (1500m)
     for (i=0; i<timestampCount; i++) times.push(Math.floor(Math.random() * 1000000000 + 500000000));
+
     var doneCount = 0;
     for (i in formats) {
         (function(format, i) {
@@ -107,7 +143,7 @@ function fuzztest( t, phpdate ) {
                         '$nlines = 0;' +
                         'while ($timestamp = fgets(STDIN)) {' +
                         '    $nlines += 1;' +
-                        '    echo date("' + format + '\\n", trim($timestamp));' +
+                        '    echo ' + phpPhpdateName + '("' + format + '\\n", trim($timestamp));' +
                         '}' +
                         'file_put_contents("/tmp/ar.out", "AR: nlines = $nlines\n");' +
                         '//sleep(10);' +
@@ -120,7 +156,7 @@ function fuzztest( t, phpdate ) {
                         var j;
                         for (j=0; j<times.length; j++) {
                             var php = phpdate(format, times[j]*1000);
-if (php !== results[j]) console.log(format, "::", times[j], phpdate("g G   Y-m-d H:i:s", times[j]*1000), "\nPHP\n", php, "\nphp -r\n", results[j]);
+if (php !== results[j]) console.log(format, "::", times[j], phpdate("g G   Y-m-d H:i:s", times[j]*1000), "\nAR\n", php, "\nphp -r\n", results[j]);
                             assert.equal(php, results[j]);
                             //t.equal(phpdate(format, times[j]*1000), results[j]);
                         }
