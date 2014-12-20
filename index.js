@@ -8,7 +8,7 @@ module.exports = {
     // mongoid has been moved into its own package
     mongoid: require('mongoid-js').mongoid,
     MongoId: require('mongoid-js').MongoId,
-    phpdate: require('./lib/phpdate.js'),
+    phpdate: require('./phpdate.js'),
     str_repeat: require('./lib/str_repeat.js'),
     timeit: require('./lib/timeit.js'),
     http_build_query: require('./lib/http_build_query.js'),

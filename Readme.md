@@ -1,6 +1,7 @@
 arlib
 =====
 
+
 ## Andras' Library of Handy Utilities
 
 This is a placeholder for some of the code I've been working on
@@ -8,6 +9,7 @@ that I want easy access to.  Feel free to browse and use!
 
 Note: [qfgets](https://www.npmjs.org/package/qfgets) which first appeared here
 was moved into its own package.
+
 
 ### Installation
 
@@ -18,6 +20,7 @@ was moved into its own package.
 
 The components are all available with `require('arlib')`, or each component
 is loadable separately with eg `require('arlib/tempnam')`.
+
 
 ### tempnam( [directory], [prefix], callback(err, filename) )
 
@@ -40,6 +43,7 @@ files in a single directory is unmanageable; `ls` and `echo *` do not work,
 and it takes days to just delete them all off an ext3 filesystem with an
 opendir/readdir/unlink loop written in C.
 
+
 ### getopt( argv, optspec )
 
 traditional unix command option extractor, returns an object with the options
@@ -54,6 +58,7 @@ further argument scanning.
         var options = getopt(process.argv, "(-file):(-help)");
         // {file: 'filename', help: true}
 
+
 ### mongoid( ), new MongoId().fetch( )
 ### MongoId.getTimestamp( idString )
 ### MongoId.parse( idString )
@@ -67,18 +72,32 @@ The mongoid functionality of arlib was made into separate package, arlib
 now includes it as a dependency.
 See [mongoid-js](https://www.npmjs.org/package/mongoid-js) for details.
 
-### phpdate( format, timestamp )
 
-return a formatted date string like PHP's date() does.  Supports most of the
-conversions (but not the ISO-8601), though timezone and localization support
-is rather lacking.  North America timezones should work.
+### phpdate( format, [timestamp] )
+
+return a formatted date string like PHP's date() does.  Supports all the php
+conversions, though timezone and localization support is very basic.  North
+America timezones should work.
 
 See php's [date](http://php.net/manual/en/function.date.php) for the list of
-supported conversions.  Of the conversions as of 2014-09-15 (php 5.1.0),
-W and o are not yet implemented.
+supported conversions.  As of phpdate-js 1.0.0, all documented conversions are
+supported and work identically to php.
+
+Format is the conversion specification.  Each character is a time element spec
+or a literal.  Backslash escaping inserts a literal instead of the converted
+time element.  The timestamp is either a JavaScript millisecond timestamp
+or a Date object.  If omitted, the current time `Date.now()` is used.
 
         var phpdate = require('arlib/phpdate');
         phpdate('Y-m-d H:i:s.u T');     // 2014-10-18 04:56:53.437000 EDT
+
+        var gmdate = require('arlib/phpdate').gmdate;
+        gmdate('Y-m-d H:i:s.u T');      // 2014-10-18 08:56:53.438000 GMT
+
+[Phpdate](htts://www.npmjs.org/package/phpdate-js), originally included as
+part of arlib, was made into a separate package.  Arlib now includes it as a
+dependency.
+
 
 ### str_repeat( string, count )
 
@@ -87,6 +106,7 @@ See php's [str_repeat](http://php.net/manual/en/function.str-repeat.php)
 
         var str_repeat = require('arlib/str_repeat');
         str_repeat("x", 5);             // "xxxxx"
+
 
 ### timeit( count, function, [message], [callback] )
 
@@ -115,6 +135,7 @@ then count times back-to-back for the benchmark.
         timeit(10000, function(cb){ opencloseAsync(function(){ cb(); }); }, "async open/close:", function(){ });
         // async open/close: "function (cb){ opencloseAsync(function(){ cb(); }); }": 10000 loops in 0.2890 sec:  34598.11 / sec, 0.02890 ms each
 
+
 ### timeit.fptime( )
 
 nanosecond-resolution floating-point timestamp from process.hrtime().  The
@@ -129,6 +150,7 @@ low as .6 microseconds per call, about 3x slower than Date.now().
         var t3 = fptime();      // 1809688.215466353
         // 25.4 usec for the first call, 3.84 for the second
         // uptime of 20 days, 22:40 hours
+
 
 ### http_build_query( objectOrArray, options )
 

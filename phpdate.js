@@ -1,1 +1,1 @@
-module.exports = require('./lib/phpdate');
+module.exports = require('phpdate-js');
