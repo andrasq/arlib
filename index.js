@@ -11,7 +11,11 @@ module.exports = {
     phpdate: require('./phpdate.js'),
     str_repeat: require('./lib/str_repeat.js'),
     timeit: require('./lib/timeit.js'),
-    http_build_query: require('./lib/http_build_query.js'),
+    http_build_query: require('./http_build_query.js'),
+    http_parse_query: require('./http_parse_query.js'),
+    urldecode: require('./http_parse_query.js').urldecode,
+    getrusage: require('./getrusage'),
+    fptime: require('./fptime'),
 
 /***
     // FIXME: either remove passthrough or make fgets/fputs a dependency

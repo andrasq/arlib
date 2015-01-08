@@ -178,3 +178,40 @@ options:
         encoding        'PHP_QUERY_RFC1738' (default) - encode spaces as '+'
                         'PHP_QUERY_RFC3986' - encode spaces as '%20'
         leave_brackets  encode {a:[3]} as "a[0]=3" and not "a%5B0%5D=3"
+
+### http_parse_query( string )
+
+build up the parameters hash from the PHP-style query string.  Parses
+name-value pairs as expected, `a=1&b=2` is `{a:1, b:2}`.  names value-less
+names as if set to one, i.e. `a&b` becomes {a:1, b:1}.  Unlike PHP, gathers
+repeated parameters into arrays (e.g., `a=1&a=2` is `{a: [1, 2]}` and not a=2.
+Like PHP, parses hierarchical values like `a[i][j]=1` into `{a: {i: {j:1}}}`.
+
+        var http_parse_query = require('arlib/http_parse_query');
+        var params = http_parse_query("a=1&b=2&c[0]=3&c[1]=4&c[2][0]=5");
+        // => {a:1, b:2, c:{'0':3, '1':4, '2':{'0':5}}}
+
+TODO: flat numerical hierarchies should be converted to arrays, not objects..
+Currently `a[0]=1&a[1]=2` parses a into the object `{'0':1, '1':2}` and not
+`[1, 2]`.  This is not symmetric with http_build_query() behavior.
+
+
+### getrusage
+
+the unix `getrusage(2)` system call, from the
+[qrusage](https://www.npmjs.org/package/qrusage) package.  See the package for
+details.  The fields names have the ru_ stripped, and the struct timevals are
+combined into floating-point time values.
+
+        var getrusage = require('arlib/getrusage');
+        var usage = getrusage();
+
+
+### fptime
+
+the current microsecond precision timestamp as a floating point number.
+Analogous to the `time(2)` system call (implemented with `gettimeofday(2)`).
+Also from the [qrusage](https://www.npmjs.org/package/qrusage) package.
+
+        var fptime = require('arlib/fptime');
+        var timestamp = fptime();

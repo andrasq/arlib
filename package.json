@@ -1,7 +1,7 @@
 {
   "name": "arlib",
-  "version": "0.2.0",
-  "description": "Andras' Utility Functions",
+  "version": "0.2.1",
+  "description": "Andras' library of handy utility functions",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -29,10 +29,9 @@
     "tempnam",
     "getopt",
     "mongoid",
-    "uniqueid",
-    "unique",
+    "unique id",
     "id",
-    "mongo",
+    "mongo id",
     "phpdate",
     "datetime",
     "date",
@@ -40,11 +39,16 @@
     "str_repeat",
     "php",
     "timeit",
-    "http_build_query"
+    "http_build_query",
+    "http_parse_query",
+    "urldecode",
+    "getrusage",
+    "gettimeofday"
   ],
   "dependencies": {
-    "mongoid-js":"1.0",
-    "phpdate-js":"1.0"
+    "mongoid-js":"1.0.5",
+    "phpdate-js":"1.0.0",
+    "qrusage":"1.0.5"
   },
   "devDependencies": {
     "nodeunit": "0.9.0"
