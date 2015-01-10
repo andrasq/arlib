@@ -56,4 +56,16 @@ module.exports = {
         // 170k/s
         t.done();
     },
+
+    'should not extract params out of an empty string': function(t) {
+        var params = http_parse_query("");
+        t.deepEqual(params, {});
+        t.done();
+    },
+
+    'should not extract params out of gaps': function(t) {
+        var params = http_parse_query("a=1&&b=2&");
+        t.deepEqual(params, {a:1, b:2});
+        t.done();
+    },
 };
