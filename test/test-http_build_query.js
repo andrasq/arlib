@@ -104,4 +104,18 @@ module.exports = {
         }
         t.done();
     },
+
+    'should build query string from Buffer': function(t) {
+        var buf = new Buffer("test data");
+        var str = http_build_query({a: buf});
+        t.equal(str, "a=test+data");
+        t.done();
+    },
+
+    'should build query string from Date': function(t) {
+        var dt = new Date(0);
+        var str = http_build_query({a: dt});
+        t.ok(str.length > 20);
+        t.done();
+    },
 };

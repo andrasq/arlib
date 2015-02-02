@@ -36,6 +36,24 @@ module.exports = {
         t.done();
     },
 
+    'should decode blank params into arrays': function(t) {
+        var str = "a&b&a&b";
+        var params = http_parse_query(str);
+        t.deepEqual(params.a, [1, 1]);
+        t.deepEqual(params.b, [1, 1]);
+        t.done();
+    },
+
+/**
+TODO:
+    'should decode blank field names into arrays': function(t) {
+        var str = "a[]=1&a[]=2";
+        var params = http_parse_query(str);
+        t.deepEqual(params.a, [1, 2]);
+        t.done();
+    },
+**/
+
     'should decode hierarchical params into object': function(t) {
         var str = "a[i][j][0]=1&a[i][j][1]=2";
         var params = http_parse_query(str);
