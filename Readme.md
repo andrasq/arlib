@@ -215,3 +215,13 @@ Also from the [qrusage](https://www.npmjs.org/package/qrusage) package.
 
         var fptime = require('arlib/fptime');
         var timestamp = fptime();
+
+## Todo
+
+qfgets:
+- write Fgets.feof()
+- write Fgets unit tests
+- write FileReader unit tests
+
+- split out tempnam into separate package tempnam
+- split out http_* into separate package qhttp
