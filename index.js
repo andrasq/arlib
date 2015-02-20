@@ -2,7 +2,7 @@
  * Export all components in arlib, or require them by name.
  */
 module.exports = {
-    tempnam: require('./tempnam.js'),
+    tempnam: require('./tempnam'),
     getopt: require('./getopt.js'),
     nextopt: require('./getopt.js').nextopt,
     // mongoid has been moved into its own package
