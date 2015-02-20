@@ -26,14 +26,15 @@ The components are all available with `require('arlib')` as eg
 
 `tempnam` from the [tempnam](https://www.npmjs.org/package/tempnam) package.
 
-php tempnam equivalent, creates a filename that does not exist on the
+[php tempnam](http://php.net/manual/en/function.tempnam.php)
+equivalent, creates a filename that does not exist on the
 system.  Like php, it also creates the file to prevent the name from
 being reused.  The default directory is process.env.TMPDIR (else /tmp),
 and the default prefix is the empty string.
 
         var tempnam = require('arlib/tempnam');
-        var filename = tempnam("/usr/tmp", "filename-prefix-", callback(err, filename) {
-            // => /usr/tmp/filename-prefix-a7259b
+        tempnam("/tmp", "my-prefix--", function(err, filename) {
+            // => /tmp/my-prefix-a7259b
         });
 
 For full details, please see the package.  Tempnam was originally published
@@ -214,7 +215,6 @@ Also from the [qrusage](https://www.npmjs.org/package/qrusage) package.
 
 ## Todo
 
-qfgets:
 - write Fgets.feof()
 - write Fgets unit tests
 - write FileReader unit tests
