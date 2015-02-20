@@ -33,7 +33,7 @@ being reused.  The default directory is process.env.TMPDIR (else /tmp),
 and the default prefix is the empty string.
 
         var tempnam = require('arlib/tempnam');
-        tempnam("/tmp", "my-prefix--", function(err, filename) {
+        tempnam("/tmp", "my-prefix-", function(err, filename) {
             // => /tmp/my-prefix-a7259b
         });
 
