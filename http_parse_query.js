@@ -1,1 +1,1 @@
-module.exports = require('./lib/http_parse_query.js');
+module.exports = require('qhttp/http_parse_query.js');

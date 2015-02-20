@@ -1,6 +1,10 @@
 /**
  * Export all components in arlib, or require them by name.
+ *
+ * Copyright (C) 2014-2015 Andras Radics
+ * Licensed under the Apache License, Version 2.0
  */
+
 module.exports = {
     tempnam: require('./tempnam'),
     getopt: require('./getopt.js'),
