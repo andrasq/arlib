@@ -6,6 +6,11 @@ module.exports = {
         t.done();
     },
 
+    'should export fptime': function(t) {
+        t.equal(typeof getrusage.fptime, 'function');
+        t.done();
+    },
+
     'getrusage should return usage': function(t) {
         var usage = getrusage();
         t.ok(usage.utime > 0);
