@@ -60,6 +60,8 @@ further argument scanning.
 ### MongoId.getTimestamp( idString )
 ### MongoId.parse( idString )
 
+`mongoid` from the [mongoid-js](https://www.npmjs.org/package/mongoid-js) package.
+
 very fast, light-weight mongodb compatible timestamped unique id
 generator.  Can be used as a convenience function to return unique-ish
 (random) ids, or as an id factory configured with a unique system id
@@ -71,6 +73,8 @@ See [mongoid-js](https://www.npmjs.org/package/mongoid-js) for details.
 
 
 ### phpdate( format, [timestamp] )
+
+`phpdate` from the [phpdate-js](htts://www.npmjs.org/package/phpdate-js) package.
 
 return a formatted date string like PHP's date() does.  Supports all the php
 conversions, though timezone and localization support is very basic.  North
@@ -151,10 +155,12 @@ low as .6 microseconds per call, about 3x slower than Date.now().
 
 ### http_build_query( queryParams, [options] )
 
+`http_build_query` from the [qhttp](https://www.npmjs.org/package/qhttp) package.
+
 format a query string like PHP's [http_build_query](http://php.net/manual/en/function.http-build-query.php).
 In particular, it handles nested objects and nested arrays.
 
-This function was moved and is now replushed from the
+This function was moved and is now republished from the
 [qhttp](https://www.npmjs.org/package/qhttp) package.  Please see qhttp
 for details.
 
@@ -165,6 +171,8 @@ for details.
 
 
 ### http_parse_query( string )
+
+`http_parse_query` from the [qhttp](https://www.npmjs.org/package/qhttp) package.
 
 build up the parameters hash from the PHP-style query string.  Parses
 name-value pairs as expected, `a=1&b=2` is `{a:1, b:2}`.  names value-less
@@ -194,6 +202,8 @@ combined into floating-point time values.
 
 ### fptime
 
+`fptime` from the [qrusage](https://www.npmjs.org/package/qrusage) package
+
 the current microsecond precision timestamp as a floating point number.
 Analogous to the `time(2)` system call (implemented with `gettimeofday(2)`).
 Also from the [qrusage](https://www.npmjs.org/package/qrusage) package.
@@ -203,9 +213,5 @@ Also from the [qrusage](https://www.npmjs.org/package/qrusage) package.
 
 ## Todo
 
-- write Fgets.feof()
-- write Fgets unit tests
-- write FileReader unit tests
-
-- split out tempnam into separate package tempnam
-- split out http_* into separate package qhttp
+- split out getopt into its own package
+- republish qunit.printf
