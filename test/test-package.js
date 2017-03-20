@@ -21,6 +21,8 @@ module.exports = {
 
     'should export expected secondary functions': function(t) {
         var arlib = require('../');
+        t.equal(typeof arlib.getopt.getopt, 'function');
+        t.equal(typeof arlib.getopt.nextopt, 'function');
         t.equal(typeof arlib.phpdate.gmdate, 'function');
         t.equal(typeof arlib.timeit.fptime, 'function');
         t.equal(typeof arlib.timeit.bench, 'function');

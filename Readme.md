@@ -43,6 +43,8 @@ here, but was split out into its own package in arlib version 0.2.5.
 
 ### getopt( argv, optspec )
 
+`getopt` from the [qgetopt](https://npmjs.org/package/qgetopt) package.
+
 traditional unix command option extractor, returns an object with the options
 set as properties.  Like traditional unix, getopt only checks for option
 switches at the beginning of the argument list, before non-switch arguments.
@@ -219,6 +221,3 @@ Also from the [qrusage](https://www.npmjs.org/package/qrusage) package.
         var timestamp = fptime();
 
 ## Todo
-
-- split out getopt into its own package
-- republish qunit.printf

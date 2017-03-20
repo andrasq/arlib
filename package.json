@@ -1,6 +1,6 @@
 {
   "name": "arlib",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Andras' library of handy utility functions",
   "license": "Apache-2.0",
   "repository": {
@@ -50,6 +50,7 @@
     "mongoid-js":"1.1.0",
     "phpdate-js":"1.0.2",
     "qrusage":"1.4.0",
+    "qgetopt":"1.0.1",
     "qhttp":"0.6.0",
     "qtimeit":"0.15.1"
   },
