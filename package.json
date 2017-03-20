@@ -1,6 +1,6 @@
 {
   "name": "arlib",
-  "version": "0.2.7",
+  "version": "0.3.0",
   "description": "Andras' library of handy utility functions",
   "license": "Apache-2.0",
   "repository": {
@@ -51,6 +51,7 @@
     "phpdate-js":"1.0.0",
     "qrusage":"1.0.5",
     "qhttp":"0.0.1"
+    "qtimeit":"0.15.1"
   },
   "devDependencies": {
     "nodeunit": "0.9.0"

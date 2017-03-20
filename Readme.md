@@ -111,6 +111,8 @@ See php's [str_repeat](http://php.net/manual/en/function.str-repeat.php)
 
 ### timeit( count, function, [message], [callback] )
 
+`qtimeit` from the [qtimeit](https://npmjs.com/package/qtimeit) package.
+
 run the function count + 1 times, and print the run timings to the console.
 If function is a string it will be eval-d.  The function under test is run
 twice to compile it (and not include the cost of compilation in the timings)
@@ -136,8 +138,7 @@ then count times back-to-back for the benchmark.
         timeit(10000, function(cb){ opencloseAsync(function(){ cb(); }); }, "async open/close:", function(){ });
         // async open/close: "function (cb){ opencloseAsync(function(){ cb(); }); }": 10000 loops in 0.2890 sec:  34598.11 / sec, 0.02890 ms each
 
-
-### timeit.fptime( )
+#### timeit.fptime( )
 
 nanosecond-resolution floating-point timestamp from process.hrtime().  The
 timestamp returned does not have an absolute meaning (on Linux, it's uptime(1),
@@ -151,6 +152,12 @@ low as .6 microseconds per call, about 3x slower than Date.now().
         var t3 = fptime();      // 1809688.215466353
         // 25.4 usec for the first call, 3.84 for the second
         // uptime of 20 days, 22:40 hours
+
+#### timeit.bench( benchSuite [,callback] )
+
+Run each of the functions in the suite and report timings and relative throughput.
+The suite can be an array of functions, or an object where the properties are
+test functions and the property names are the test names to report on.
 
 
 ### http_build_query( queryParams, [options] )

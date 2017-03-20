@@ -14,7 +14,7 @@ module.exports = {
     MongoId: require('mongoid-js').MongoId,
     phpdate: require('./phpdate.js'),
     str_repeat: require('./lib/str_repeat.js'),
-    timeit: require('./lib/timeit.js'),
+    timeit: require('./timeit.js'),
     http_build_query: require('./http_build_query.js'),
     http_parse_query: require('./http_parse_query.js'),
     urldecode: require('./http_parse_query.js').urldecode,
