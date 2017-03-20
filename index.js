@@ -15,6 +15,7 @@ module.exports = {
     phpdate: require('./phpdate.js'),
     str_repeat: require('./lib/str_repeat.js'),
     timeit: require('./timeit.js'),
+    qhttp: require('./qhttp.js'),
     http_build_query: require('./http_build_query.js'),
     http_parse_query: require('./http_parse_query.js'),
     urldecode: require('./http_parse_query.js').urldecode,
