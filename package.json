@@ -46,14 +46,14 @@
     "gettimeofday"
   ],
   "dependencies": {
-    "tempnam":"0.9.0",
-    "mongoid-js":"1.0.5",
-    "phpdate-js":"1.0.0",
-    "qrusage":"1.0.5",
-    "qhttp":"0.0.1"
+    "tempnam":"1.0.2",
+    "mongoid-js":"1.1.0",
+    "phpdate-js":"1.0.2",
+    "qrusage":"1.4.0",
+    "qhttp":"0.6.0",
     "qtimeit":"0.15.1"
   },
   "devDependencies": {
-    "nodeunit": "0.9.0"
+    "qnit": "0.13.0"
   }
 }
