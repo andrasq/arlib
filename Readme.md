@@ -22,7 +22,7 @@ The components are all available with `require('arlib')` as eg
 `require('arlib').tempnam`, or separately with eg `require('arlib/tempnam')`.
 
 
-### tempnam( [directory], [prefix], callback(err, filename) )
+### tempnam( [directory], [prefix], [callback(err, filename)] )
 
 `tempnam` from the [tempnam](https://www.npmjs.org/package/tempnam) package.
 
@@ -31,6 +31,8 @@ equivalent, creates a filename that does not exist on the
 system.  Like php, it also creates the file to prevent the name from
 being reused.  The default directory is process.env.TMPDIR (else /tmp),
 and the default prefix is the empty string.
+
+If the callback is omitted, `tempnam` returns a filename or an `Error` object.
 
         var tempnam = require('arlib/tempnam');
         tempnam("/tmp", "my-prefix-", function(err, filename) {
